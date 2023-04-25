@@ -8,7 +8,7 @@ module "acm" {
   #zone_id      = data.aws_route53_zone.mydomain.zone_id 
 
   domain_name  = "pcftesthkr.com"
-  zone_id      = "Z04567723SBE0ZX0J1XM2"
+  zone_id      = "Z0526078YHVG11AL5EP8"
 
   subject_alternative_names = [
     "*.pcftesthkr.com"
