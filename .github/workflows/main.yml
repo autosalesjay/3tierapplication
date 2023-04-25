@@ -1,0 +1,58 @@
+name: Terraform
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: "1.4.4"
+
+    - name: Initialize Terraform
+      run: terraform init
+
+    - name: Validate Terraform
+      run: terraform validate
+
+    - name: Plan Terraform
+      id: plan
+      run: terraform plan -var-file="secrets.tfvars" -out=tfplan
+
+    - name: Apply Terraform
+      run: terraform apply tfplan
+      env:
+        TF_CLI_AUTO_APPROVE: 1
+        
+#    - name: Destroy Terraform
+#      run: terraform destroy -var-file="secrets.tfvars" -auto-approve
+
+
+ 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
