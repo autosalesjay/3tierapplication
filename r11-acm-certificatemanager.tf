@@ -11,7 +11,7 @@ module "acm" {
   zone_id      = "Z0526078YHVG11AL5EP8"
 
   subject_alternative_names = [
-    "*.pcftesthkr.com"
+    "pcftesthkr.com"
   ]
   tags = local.common_tags
 }
